@@ -104,6 +104,7 @@ DEPENDENCIES
   guard-minitest
   minitest (~> 5.2.0)
   pry
+  rake
   sass
   shotgun
   sinatra (~> 1.4.4)

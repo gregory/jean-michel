@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '1.9.3'
+
 gem 'sinatra', '~> 1.4.4'
 gem 'slim'
 gem 'sinatra-asset-pipeline', require: 'sinatra/asset_pipeline'
@@ -16,6 +18,7 @@ group :test do
 end
 
 group :test, :development do
+  gem 'rake'
   gem 'pry'
 end
 
