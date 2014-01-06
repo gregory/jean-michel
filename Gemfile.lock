@@ -85,6 +85,11 @@ GEM
     rb-fsevent (0.9.3)
     rb-inotify (0.9.3)
       ffi (>= 0.5.0)
+    representable (1.7.5)
+      multi_json
+      nokogiri
+    roar (0.12.2)
+      representable (>= 1.6.0)
     sass (3.2.13)
     shotgun (0.9)
       rack (>= 1.0)
@@ -140,6 +145,7 @@ DEPENDENCIES
   minitest (~> 5.2.0)
   pry
   rake
+  roar
   sass
   shotgun
   sinatra (~> 1.4.4)
