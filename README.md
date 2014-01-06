@@ -1,7 +1,8 @@
 # Jean-michel
-===
 
 > Because i want to improve or find new tools to solve problems
+
+![Jean-michel Saive](http://2.bp.blogspot.com/-Jq-vncke9m4/TiMhdPI9MXI/AAAAAAAAAoc/xMlDPg1bodg/s1600/saive.jpg "Jean-Michel")
 
 Because lately i've read a lot about ddd, dci, event sourcing and cqrs and wanted to tast the flavor and see how it feels in live,
 I decided to create a simple app to experiment that way of structuring code.
@@ -24,5 +25,3 @@ I'll try to stick to TDD and BDD as much as possible, but everyone know that whe
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-
-![Jean-michel Saive](http://2.bp.blogspot.com/-Jq-vncke9m4/TiMhdPI9MXI/AAAAAAAAAoc/xMlDPg1bodg/s1600/saive.jpg "Jean-Michel")
