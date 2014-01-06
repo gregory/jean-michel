@@ -1,5 +1,7 @@
 # Jean-michel
 
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/gregory/jean-michel-js/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
 > Because i want to improve or find new tools to solve problems
 
 ![Jean-michel Saive](http://2.bp.blogspot.com/-Jq-vncke9m4/TiMhdPI9MXI/AAAAAAAAAoc/xMlDPg1bodg/s1600/saive.jpg "Jean-Michel")
