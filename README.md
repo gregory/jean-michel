@@ -2,7 +2,7 @@
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/gregory/jean-michel/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
-[![Analytics](https://ga-beacon.appspot.com/UA-46877650-1/jean-michel/readme?pixel)](https://github.com/gregory/jean-michel)
+[![Analytics](https://ga-beacon.appspot.com/UA-34823890-2/jean-michel/readme?pixel)](https://github.com/gregory/jean-michel)
 
 > Because i want to improve or find new tools to solve problems
 
