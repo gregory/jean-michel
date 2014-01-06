@@ -1,6 +1,6 @@
 # Jean-michel
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/gregory/jean-michel-js/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/gregory/jean-michel/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 > Because i want to improve or find new tools to solve problems
 
