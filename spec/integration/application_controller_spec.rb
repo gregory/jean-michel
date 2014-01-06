@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require_relative '../integration_helper'
 
 describe 'it should return result' do
   it 'has content' do
