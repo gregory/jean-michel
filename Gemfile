@@ -7,6 +7,7 @@ gem 'slim'
 gem 'sinatra-asset-pipeline', require: 'sinatra/asset_pipeline'
 gem 'grape'
 gem "roar", require: [ 'roar/representer/json', 'roar/decorator', 'roar/representer/json/hal' ]
+gem "virtus"
 
 group :development do
   gem 'shotgun'
@@ -17,6 +18,7 @@ group :test do
   gem 'guard'
   gem 'guard-minitest'
   gem 'capybara_minitest_spec'
+  gem 'faker', '~> 1.2.0'
 end
 
 group :test, :development do
