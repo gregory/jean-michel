@@ -1,10 +1,10 @@
 module JM
-  module Game
+  module Player
     module V1
-      class GameResource < Roar::Decorator
+      class PlayerResource < Roar::Decorator
         include Roar::Representer::JSON::HAL
 
-        link :new do
+        link :players do
           "http://localhost:9393/foo"
         end
       end

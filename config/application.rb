@@ -4,6 +4,6 @@ Bundler.require(:default, :assets, ENV['RACK_ENV'])
 
 [
   './app/{models,helpers,controllers}/*.rb',
-  './{lib,api}/**/*.rb'
+  './{lib,api,domain}/**/*.rb'
 ].each{ |path| Dir.glob(path, &method(:require)) }
 
