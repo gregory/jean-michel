@@ -9,6 +9,10 @@ class ApplicationController < Sinatra::Base
   not_found{ slim :'404' }
   error    { slim :'500' }
 
+  configure do
+    I18n.enforce_available_locales = true
+  end
+
   helpers do
     def find_template(views, name, engine, &block)
       views.each{ |v| super(v, name, engine, &block) }
