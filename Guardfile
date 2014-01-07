@@ -10,6 +10,7 @@ guard :minitest do
   # with Minitest::Spec
   watch(%r{^spec/(.*)_spec\.rb})
   #watch(%r{^lib/(.+)\.rb})         { |m| "spec/#{m[1]}_spec.rb" }
+  watch(%r{^domain/(.+)\.rb})         { |m| "spec/domain/#{m[1]}_spec.rb" }
   watch(%r{^app/controllers/application_controller\.rb}) { 'spec/integration' }
   watch(%r{^app/controllers/(.+)_controller\.rb})        { |m| "spec/integration/#{m[1]}_spec.rb" }
   watch(%r{^spec/spec_helper\.rb}) { 'spec' }
