@@ -1,7 +1,11 @@
 class Player
   include Virtus.model
 
-  attribute :id, Integer
+  attribute :id, String
   attribute :name, String
   attribute :nick, String
+
+  def create(attributes)
+    self.attributes = attributes
+  end
 end

@@ -6,6 +6,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require 'rack/test'
 require 'support/request_helper.rb'
+require 'wisper/rspec/stub_wisper_publisher'
 
 
 class Minitest::Spec

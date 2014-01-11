@@ -8,6 +8,9 @@ gem 'sinatra-asset-pipeline', require: 'sinatra/asset_pipeline'
 gem 'grape'
 gem "roar", require: [ 'roar/representer/json', 'roar/decorator', 'roar/representer/json/hal' ]
 gem "virtus"
+gem "imperator"
+gem "wisper", git: 'git@github.com:gregory/wisper.git', branch: 'features/replay_events'
+gem "dumb_delegator"
 
 group :development do
   gem 'shotgun'
