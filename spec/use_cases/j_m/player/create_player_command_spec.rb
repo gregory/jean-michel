@@ -18,7 +18,9 @@ describe JM::Player::CreatePlayerCommand do
     subject{ JM::Player::CreatePlayerCommand.new(params) }
 
     before do
-      def player.attributes; {}; end
+      def player.attributes
+        { nick: 'bar', name: 'foo' }
+      end
     end
 
     it 'creates a new player' do
@@ -26,6 +28,10 @@ describe JM::Player::CreatePlayerCommand do
         player.expect(:create, "foo", [params.merge({id: subject.id})])
         subject.perform
         player.verify
+        p = PlayerRepository.find(subject.id)
+        p.id.must_equal subject.id
+        p.nick.must_equal subject.nick
+        p.name.must_equal subject.name
       end
     end
 

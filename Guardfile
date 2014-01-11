@@ -11,6 +11,7 @@ guard :minitest do
   watch(%r{^spec/(.*)_spec\.rb})
   #watch(%r{^lib/(.+)\.rb})         { |m| "spec/#{m[1]}_spec.rb" }
   watch(%r{^domain/(.+)\.rb})         { |m| "spec/domain/#{m[1]}_spec.rb" }
+  watch(%r{^ports/(.+)\.rb})         { |m| "spec/ports/#{m[1]}_spec.rb" }
   watch(%r{^app/commands/(.+)\.rb})       { |m| "spec/use_cases/#{m[1]}_spec.rb" }
   watch(%r{^app/api/(.+)\.rb})       { |m| "spec/api/#{m[1]}_spec.rb" }
   watch(%r{^app/controllers/application_controller\.rb}) { 'spec/integration' }

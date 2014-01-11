@@ -10,6 +10,7 @@ gem "roar", require: [ 'roar/representer/json', 'roar/decorator', 'roar/represen
 gem "virtus"
 gem "imperator"
 gem "wisper", git: 'git@github.com:gregory/wisper.git', branch: 'features/replay_events'
+gem "activesupport"
 gem "dumb_delegator"
 
 group :development do

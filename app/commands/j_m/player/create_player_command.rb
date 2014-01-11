@@ -7,7 +7,8 @@ class JM::Player::CreatePlayerCommand < Imperator::Command
   validates_presence_of :name, :nick
 
   action do
-    publish(:player_created, player.attributes) if player.create(self.attributes)
+    self.subscribe(::PlayerRepository)
+    publish(:player_created, player.attributes.merge!({id: self.id})) if player.create(self.attributes)
   end
 
   def player

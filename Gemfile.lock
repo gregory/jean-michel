@@ -156,6 +156,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activesupport
   capybara_minitest_spec
   dumb_delegator
   faker (~> 1.2.0)
