@@ -8,10 +8,10 @@ class JM::Player::CreatePlayerCommand < Imperator::Command
 
   action do
     self.subscribe(::PlayerRepository)
-    publish(:player_created, player.attributes.merge!({uuid: self.id})) if player.create(self.attributes)
+    publish(:player_created, player.attributes) if player.create(self.attributes)
   end
 
   def player
-    @player ||= Player.new
+    @player ||= Player.new(uuid: self.id)
   end
 end

@@ -24,20 +24,21 @@ describe JM::Player::CreatePlayerCommand do
 
     before do
       def player.attributes
-        { nick: 'bar', name: 'foo' }
+        { uuid: 'foo',  nick: 'bar', name: 'foo' }
       end
     end
 
     it 'creates a new player' do
       subject.stub(:player, player) do
-        player.expect(:create, "foo", [params.merge({id: subject.id})])
+        player.expect(:create, player, [params.merge(id: subject.id)])
         subject.perform
         player.verify
 
-        p = PlayerRepository.find(subject.id)
-        p.uuid.must_equal subject.id
-        p.nick.must_equal subject.nick
-        p.name.must_equal subject.name
+        p = PlayerRepository.find(player.attributes[:uuid])
+        p.class.must_equal PlayerDocument
+        p.uuid.must_equal player.attributes[:uuid]
+        p.nick.must_equal player.attributes[:nick]
+        p.name.must_equal player.attributes[:name]
       end
     end
 
