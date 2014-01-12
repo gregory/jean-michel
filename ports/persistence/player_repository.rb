@@ -5,7 +5,7 @@ class PlayerRepository
     extend Forwardable
     attr_accessor :strategy, :adaptor
     attr_reader :base_document
-    delegate [:foo, :size, :find, :collection] => :adaptor
+    delegate [:size, :first, :last, :all, :where, :find, :collection] => :adaptor
 
     def repository_for(document)
       clean_cached_variables!
@@ -14,6 +14,15 @@ class PlayerRepository
 
     def new
       adaptor.new
+    end
+
+    def with_strategy(strategy)
+      current_strategy = self.strategy
+
+      self.strategy = strategy
+      yield
+    ensure
+      self.strategy = current_strategy
     end
 
     def strategy=(strategy)
@@ -43,6 +52,8 @@ class PlayerRepository
 
   #Repository interface
   def self.player_created(attr)
+    raise 'Please provide a uuid' if attr[:uuid].nil?
+
     adaptor.create!(attr)
   end
 end

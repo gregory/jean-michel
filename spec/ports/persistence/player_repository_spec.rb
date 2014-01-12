@@ -2,10 +2,20 @@ require_relative '../../spec_helper'
 
 describe PlayerRepository do
   subject{ PlayerRepository }
+  let(:player_memory_store) do
+    Class.new do
+      include Virtus.model
+
+      attribute :name
+      attribute :nick
+      attribute :uuid
+    end
+  end
+
+  before{ subject.repository_for(player_memory_store) }
 
   describe 'we can set a strategy' do
     let(:strategy) { :foo }
-
 
     it 'sets a global strategy' do
       subject.strategy = strategy
@@ -37,15 +47,14 @@ describe PlayerRepository do
   end
 
   describe '.player_created(attr)' do
-    let(:attr) { { id: 'foo', name: 'John', nick: 'Doe' } }
+    let(:attr) { { uuid: 'foo', name: 'John', nick: 'Doe' } }
 
     subject{ PlayerRepository }
 
     it 'saved documents' do
-      subject.repository_for(PlayerDocument)
       doc = subject.player_created(attr)
 
-      stored = subject.find(doc.id)
+      stored = subject.find(doc.uuid)
       stored.name.must_equal attr[:name]
       stored.nick.must_equal attr[:nick]
     end

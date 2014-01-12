@@ -1,7 +1,6 @@
 class Player
   include Virtus.model
 
-  attribute :id, String
   attribute :name, String
   attribute :nick, String
 
