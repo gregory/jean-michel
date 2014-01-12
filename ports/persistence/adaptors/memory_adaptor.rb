@@ -1,11 +1,10 @@
-require 'securerandom'
 require 'dumb_delegator'
 module Adaptors
   class MemoryAdaptor < DumbDelegator
     class MemoryRelation
       attr_reader :collection
 
-      def initialize(collection)
+      def initialize(collection={})
         @collection = collection
       end
 
