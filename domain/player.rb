@@ -6,7 +6,7 @@ class Player
   attribute :nick, String
 
   def create(attributes)
-    self.attributes.merge!(attributes)
+    self.attributes = attributes
     self
   end
 end
