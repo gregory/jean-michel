@@ -8,7 +8,12 @@ class JM::Player::CreatePlayerCommand < Imperator::Command
 
   action do
     self.subscribe(::PlayerRepository)
-    publish(:player_created, player.attributes) if player.create(self.attributes)
+
+    if player.create(self.attributes)
+      publish(:player_created, player)
+    else
+      publish(:player_creation_failed, self)
+    end
   end
 
   def player

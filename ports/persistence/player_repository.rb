@@ -51,9 +51,7 @@ class PlayerRepository
   repository_for PlayerDocument
 
   #Repository interface
-  def self.player_created(attr)
-    raise 'Please provide a uuid' if attr[:uuid].nil?
-
-    adaptor.create!(attr)
+  def self.player_created(player)
+    adaptor.create!(player.attributes)
   end
 end
