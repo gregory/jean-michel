@@ -1,7 +1,7 @@
 class PlayerDocument
-  include Virtus.model
+  include Mongoid::Document
 
-  attribute :id
-  attribute :name
-  attribute :nick
+  field :name
+  field :nick
+  field :uuid
 end

@@ -11,6 +11,11 @@ describe JM::Player::CreatePlayerCommand do
   it{ assert_equal false, subject.new({nick: 'foo'}).valid? }
   it{ assert_equal true, subject.new({name: 'foo', nick: 'foo'}).valid? }
 
+  before do
+    PlayerRepository.adaptor = :mongo
+    PlayerRepository.repository_for(PlayerDocument)
+  end
+
   describe 'create a new player' do
     let(:params) { { name: 'foo', nick: 'bar' } }
     let(:player) { Minitest::Mock.new }
@@ -28,8 +33,9 @@ describe JM::Player::CreatePlayerCommand do
         player.expect(:create, "foo", [params.merge({id: subject.id})])
         subject.perform
         player.verify
+
         p = PlayerRepository.find(subject.id)
-        p.id.must_equal subject.id
+        p.uuid.must_equal subject.id
         p.nick.must_equal subject.nick
         p.name.must_equal subject.name
       end

@@ -12,6 +12,7 @@ gem "imperator"
 gem "wisper", git: 'git@github.com:gregory/wisper.git', branch: 'features/replay_events'
 gem "activesupport"
 gem "dumb_delegator"
+gem 'mongoid'
 
 group :development do
   gem 'shotgun'
