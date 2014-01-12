@@ -4,4 +4,6 @@ require File.expand_path('../application', __FILE__)
 
 if ENV['RACK_ENV'] == 'test'
   PlayerRepository.strategy = :memory
+else
+  PlayerRepository.strategy = :mongo
 end
