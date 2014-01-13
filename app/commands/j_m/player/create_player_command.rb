@@ -6,8 +6,13 @@ class JM::Player::CreatePlayerCommand < Imperator::Command
 
   validates_presence_of :name, :nick
 
-  action do
+  def initialize(*)
     self.subscribe(::PlayerRepository)
+    super
+  end
+
+  action do
+    publish(:player_creation_failed, self) unless self.valid?
 
     if player.create(self.attributes)
       publish(:player_created, player)
