@@ -4,8 +4,12 @@ module JM
       class PlayerResource < Roar::Decorator
         include Roar::Representer::JSON::HAL
 
+        property :uuid
+        property :name
+        property :nick
+
         link :players do
-          "http://localhost:9393/foo"
+          "http://localhost:9393/players"
         end
       end
     end
