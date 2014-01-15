@@ -51,7 +51,11 @@ class PlayerRepository
   repository_for PlayerDocument
 
   #Repository interface
-  def self.player_created(player)
-    adaptor.create!(player.attributes)
+  def self.player_created(attributes)
+    adaptor.create!(attributes)
+  end
+
+  def self.find(uuid)
+    adaptor.where(uuid: uuid).first
   end
 end

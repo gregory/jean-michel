@@ -53,7 +53,7 @@ describe PlayerRepository do
     subject{ PlayerRepository }
 
     it 'saved documents' do
-      doc = subject.player_created(player)
+      doc = subject.player_created(attr)
 
       stored = subject.find(doc.uuid)
       stored.name.must_equal attr[:name]

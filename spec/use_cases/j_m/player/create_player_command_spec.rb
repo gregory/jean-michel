@@ -12,28 +12,28 @@ describe JM::Player::CreatePlayerCommand do
   it{ assert_equal true, subject.new({name: 'foo', nick: 'foo'}).valid? }
 
   before do
-    PlayerRepository.adaptor = :mongo
+    PlayerRepository.strategy = :mongo
     PlayerRepository.repository_for(PlayerDocument)
   end
 
   describe 'create a new player' do
-    let(:params) { { name: 'foo', nick: 'bar' } }
-    let(:player) { Minitest::Mock.new }
-
     subject{ JM::Player::CreatePlayerCommand.new(params) }
 
-    before do
-      def player.attributes
-        { uuid: 'foo',  nick: 'bar', name: 'foo' }
-      end
-    end
+    describe 'when the command is valid' do
+      let(:params) { { name: 'foo', nick: 'bar' } }
 
-    it 'creates a new player' do
-      subject.stub(:player, player) do
-        player.expect(:create, player, [params.merge(id: subject.id)])
+      let(:listener) { Minitest::Mock.new }
+
+      it 'receive a publication from the player' do
+        subject.player.subscribe(listener)
+        listener.expect(:player_created, nil, [params.merge(uuid: subject.id)])
         subject.perform
-        player.verify
+        listener.verify
+      end
 
+      it 'create and persist a new player' do
+        player = subject.player
+        subject.perform
         p = PlayerRepository.find(player.attributes[:uuid])
         p.class.must_equal PlayerDocument
         p.uuid.must_equal player.attributes[:uuid]
@@ -42,5 +42,17 @@ describe JM::Player::CreatePlayerCommand do
       end
     end
 
+    describe 'when the command is invalid' do
+      let(:params) { { name: '', nick: 'bar' } }
+      let(:listener) { Minitest::Mock.new }
+
+      before{ subject.subscribe(listener) }
+
+      it 'publish: player_creation_failed' do
+        listener.expect(:player_creation_failed, nil, [subject])
+        subject.perform
+        listener.verify
+      end
+    end
   end
 end
