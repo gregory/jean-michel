@@ -4,7 +4,7 @@ module JM
       class PlayerResource < Roar::Decorator
         include Roar::Representer::JSON::HAL
 
-        property :uuid
+        property :id
         property :name
         property :nick
 

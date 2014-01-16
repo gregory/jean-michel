@@ -1,8 +1,8 @@
 require_relative '../../../spec_helper'
 
-describe JM::Player::CreatePlayerCommand do
+describe JM::Player::PlayerCreationCommand do
   let(:params) { {} }
-  subject{ JM::Player::CreatePlayerCommand }
+  subject{ JM::Player::PlayerCreationCommand }
 
   it{ assert_equal false, subject.new({}).valid? }
   it{ assert_equal false, subject.new({name: ''}).valid? }
@@ -17,28 +17,35 @@ describe JM::Player::CreatePlayerCommand do
   end
 
   describe 'create a new player' do
-    subject{ JM::Player::CreatePlayerCommand.new(params) }
+    subject{ JM::Player::PlayerCreationCommand.new(params) }
 
     describe 'when the command is valid' do
       let(:params) { { name: 'foo', nick: 'bar' } }
 
       let(:listener) { Minitest::Mock.new }
+      let(:command_listener) { Minitest::Mock.new }
+
+      before do
+        subject.subscribe(command_listener)
+        subject.player.subscribe(listener)
+      end
 
       it 'receive a publication from the player' do
-        subject.player.subscribe(listener)
-        listener.expect(:player_created, nil, [params.merge(uuid: subject.id)])
+        command_listener.expect(:player_creation_succeed, nil, [subject.player])
+        listener.expect(:player_created, nil, [params.merge({id: subject.id})])
         subject.perform
         listener.verify
+        command_listener.verify
       end
 
       it 'create and persist a new player' do
         player = subject.player
         subject.perform
-        p = PlayerRepository.find(player.attributes[:uuid])
+        p = PlayerRepository.find(player.id)
         p.class.must_equal PlayerDocument
-        p.uuid.must_equal player.attributes[:uuid]
-        p.nick.must_equal player.attributes[:nick]
-        p.name.must_equal player.attributes[:name]
+        p.uuid.must_equal player.id
+        p.nick.must_equal player.nick
+        p.name.must_equal player.name
       end
     end
 

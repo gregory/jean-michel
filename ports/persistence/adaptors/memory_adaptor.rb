@@ -46,8 +46,8 @@ module Adaptors
       MemoryRelation.new(collection).where(conditions)
     end
 
-    def find(id)
-      MemoryRelation.new(collection).find(id)
+    def find(uuid)
+      MemoryRelation.new(collection).find(uuid)
     end
 
     def first

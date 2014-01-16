@@ -12,10 +12,6 @@ class PlayerRepository
       @base_document = document
     end
 
-    def new
-      adaptor.new
-    end
-
     def with_strategy(strategy)
       current_strategy = self.strategy
 
@@ -52,7 +48,10 @@ class PlayerRepository
 
   #Repository interface
   def self.player_created(attributes)
-    adaptor.create!(attributes)
+    #TODO: Bug in wisper, it should close the params before sending
+    params = attributes.clone
+    params[:uuid] = params.delete(:id)
+    adaptor.create!(params)
   end
 
   def self.find(uuid)

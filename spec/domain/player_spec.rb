@@ -1,23 +1,20 @@
 require_relative '../spec_helper'
 
 describe Player do
-  describe '.new' do
-    let(:fname) { Faker::Name.name }
-    let(:nick) { Faker::Name.name }
-    let(:uuid) { SecureRandom.hex(24) }
+  let(:fname) { Faker::Name.name }
+  let(:nick) { Faker::Name.name }
+  let(:id) { SecureRandom.hex(24) }
 
-    subject{ Player.new(uuid: uuid, name: fname, nick: nick) }
+  describe '.new' do
+    subject{ Player.new(id: id, name: fname, nick: nick) }
 
     it { subject.name.must_equal fname }
     it { subject.nick.must_equal nick }
-    it { subject.uuid.must_equal uuid }
+    it { subject.id.must_equal id }
   end
 
   describe '.create(attributes)' do
-    let(:fname) { Faker::Name.name }
-    let(:nick) { Faker::Name.name }
-    let(:uuid) { SecureRandom.hex(24) }
-    let(:attributes) { { fname: fname, nick: nick, uuid: uuid } }
+    let(:attributes) { { name: fname, nick: nick, id: id } }
     let(:player) { Player.new }
     let(:listener) { Minitest::Mock.new }
 

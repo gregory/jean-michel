@@ -47,7 +47,7 @@ describe PlayerRepository do
   end
 
   describe '.player_created(player)' do
-    let(:attr) { { uuid: 'foo', name: 'John', nick: 'Doe' } }
+    let(:attr) { { id: 'foo', name: 'John', nick: 'Doe' } }
     let(:player) { ::Player.new(attr) }
 
     subject{ PlayerRepository }
@@ -56,6 +56,7 @@ describe PlayerRepository do
       doc = subject.player_created(attr)
 
       stored = subject.find(doc.uuid)
+      stored.uuid.must_equal doc.uuid
       stored.name.must_equal attr[:name]
       stored.nick.must_equal attr[:nick]
     end

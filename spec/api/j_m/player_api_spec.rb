@@ -37,7 +37,7 @@ describe 'Player Api' do
       last_response.must_be :successful?
       json['name'].must_equal n
       json['nick'].must_equal nick
-      json['uuid'].wont_be :nil?
+      json['id'].wont_be :nil?
       json['_links']['players']['href'].must_equal 'http://localhost:9393/players'
     end
   end

@@ -20,7 +20,7 @@ module JM
         requires :nick, type: String, desc: "A nickname for the player"
       end
       post do
-        command = ::JM::Player::CreatePlayerCommand.new(params)
+        command = ::JM::Player::PlayerCreationCommand.new(params)
         command.on(:player_creation_succeed) {|player| return JM::Player::V1::PlayerResource.new(player) }
         command.on(:player_creation_failed) { |cmd| return error!(cmd.errors.messages, 400) }
 

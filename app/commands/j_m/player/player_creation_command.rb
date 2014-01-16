@@ -1,4 +1,4 @@
-class JM::Player::CreatePlayerCommand < Imperator::Command
+class JM::Player::PlayerCreationCommand < Imperator::Command
   include Wisper::Publisher
 
   attribute :name
@@ -8,16 +8,14 @@ class JM::Player::CreatePlayerCommand < Imperator::Command
 
   action do
     if valid?
-      params = self.attributes
-      id = params.delete(:id)
       player.on(:player_created) { publish(:player_creation_succeed, player) }
-      player.create(params.merge!(uuid: id))
+      player.create(self.attributes)
     else
       publish(:player_creation_failed, self)
     end
   end
 
   def player
-    @player ||= Player.new(uuid: self.id).tap {|p| p.subscribe(::PlayerRepository) }
+    @_player ||= Player.new.tap {|p| p.subscribe(::PlayerRepository) }
   end
 end
